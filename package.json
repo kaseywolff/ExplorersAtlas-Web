@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "build": "NODE_ENV=production webpack",
-    "dev": "concurrently \"NODE_ENV=development webpack serve --open --hot\" \"nodemon ./src/server/server.js\"",
-    "frontend": "NODE_ENV=development webpack serve --open --hot"
+    "build": "NODE_ENV=production webpack --config config/webpack.config.js",
+    "dev": "concurrently \"NODE_ENV=development webpack serve --config config/webpack.config.js --open --hot\" \"nodemon ./src/server/server.js\"",
+    "frontend": "NODE_ENV=development webpack serve --config config/webpack.config.js --open --hot",
+    "tsc": "tsc"
   },
   "author": "Kasey Wolff",
   "license": "Copyright",

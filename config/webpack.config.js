@@ -5,7 +5,7 @@ module.exports = {
   mode: process.env.NODE_ENV,
   entry: './src/index.js',
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.resolve(__dirname, '..', 'dist'), // Adjusted path for 'dist' directory
     publicPath: '/',
     filename: 'bundle.js',
   },
@@ -45,7 +45,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: path.resolve(__dirname, '..', 'src', 'index.html'), // Adjusted path for template file
     }),
   ],
   devServer: {
@@ -53,7 +53,7 @@ module.exports = {
     hot: true,
     static: {
       publicPath: '/',
-      directory: path.join(__dirname, 'dist'),
+      directory: path.resolve(__dirname, '..', 'dist'), // Adjusted path for 'dist' directory
     },
   },
 };

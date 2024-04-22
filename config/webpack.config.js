@@ -3,9 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: './src/index.js',
+  entry: './src/client/index.js',
   output: {
-    path: path.resolve(__dirname, '..', 'dist'), // Adjusted path for 'dist' directory
+    path: path.resolve(__dirname, '..', 'dist'),
     publicPath: '/',
     filename: 'bundle.js',
   },
@@ -45,15 +45,15 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', 'src', 'index.html'), // Adjusted path for template file
+      template: path.resolve(__dirname, '..', 'src', 'client', 'index.html'), // Adjusted path for template file
     }),
   ],
   devServer: {
     port: 8080,
     hot: true,
-    static: {
-      publicPath: '/',
-      directory: path.resolve(__dirname, '..', 'dist'), // Adjusted path for 'dist' directory
-    },
+    // static: {
+    //   publicPath: '/',
+    //   directory: path.resolve(__dirname, '..', 'dist'), // Adjusted path for 'dist' directory
+    // },
   },
 };

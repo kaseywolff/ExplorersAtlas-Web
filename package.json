@@ -4,9 +4,10 @@
   "description": "App to organize and plan your backpacking and camping trips.",
   "main": "src/server/server.ts",
   "scripts": {
-    "start": "node src/server/server.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
-    "dev": "concurrently \"cross-env NODE_ENV=development webpack serve --config config/webpack.config.js --open --hot\" \"cross-env PORT=8080 nodemon src/server/server.ts\""
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack serve --config config/webpack.config.js --open --hot\" \"cross-env nodemon src/server/server.ts\"",
+    "frontend": "cross-env NODE_ENV=development webpack serve --config config/webpack.config.js --open --hot",
+    "backend": "cross-env node src/server/server.ts"
   },
   "author": "Kasey Wolff",
   "license": "Copyright",

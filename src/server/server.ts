@@ -1,21 +1,22 @@
-const express = require('express');
+import express from 'express';
+import path from 'path';
+import cors from 'cors';
+import signupRouter from './routes/signup'; // Correct import statement for signupRouter
+
 const app = express();
-const path = require('path');
-const cors = require('cors');
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// const cookieParser = require('cookie-parser');
-// app.use(cookieParser());
-
-const loginRouter = require('./routes/login');
-const signupRouter = require('./routes/signup');
-
+// Static files
 app.use(express.static('dist'));
-app.use('/api/login', loginRouter);
-app.use('/api/signup', signupRouter);
 
+// Routes
+app.use('/api/signup', signupRouter); // Use signupRouter middleware
 
-module.exports = app;
+// Default route
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+});
+

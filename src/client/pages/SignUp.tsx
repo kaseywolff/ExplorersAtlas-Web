@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-export default function SignupPage() {
+export default function Signup(): JSX.Element {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState({
@@ -119,6 +119,5 @@ export default function SignupPage() {
         <button type="submit">Sign Up</button>
       </form>
     </div>
-  )
-
-}
+  );
+};

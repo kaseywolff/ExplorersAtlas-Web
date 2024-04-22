@@ -10,4 +10,12 @@ app.use(express.urlencoded({ extended: false }));
 // const cookieParser = require('cookie-parser');
 // app.use(cookieParser());
 
-const signupRouter = require('./routes/signup.ts');
+const loginRouter = require('./routes/login');
+const signupRouter = require('./routes/signup');
+
+app.use(express.static('dist'));
+app.use('/api/login', loginRouter);
+app.use('/api/signup', signupRouter);
+
+
+module.exports = app;

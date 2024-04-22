@@ -9,9 +9,9 @@ const userController = {
       return next('No username or password given')
     };
 
-    const { username, password, email } = req.body;
+    const { firstname, lastname, username, password, email } = req.body;
 
-    User.create({ username, password, email })
+    User.create({ firstname, lastname, username, password, email })
       .then((result) => {
         res.locals.user = result;
         return next();

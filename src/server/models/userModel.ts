@@ -1,5 +1,4 @@
-import mongoose, { Schema, Document } from 'mongoose';
-import { MONGO_USER_URI } from '../../../config/mongodb';
+import mongoose, { Schema, Document } from 'mongoose'; // Import mongoose directly
 
 // Define interface for User document
 interface IUser extends Document {
@@ -35,11 +34,6 @@ const userSchema: Schema = new Schema({
     required: true,
   },
 });
-
-// Connect to MongoDB
-mongoose.connect(MONGO_USER_URI)
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB connection error:', err));
 
 // Define and export User model
 export default mongoose.model<IUser>('User', userSchema);

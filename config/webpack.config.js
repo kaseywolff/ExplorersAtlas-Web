@@ -1,8 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
-module.exports = {
-  mode: process.env.NODE_ENV,
+module.exports = env => ({
+  mode: env,
   entry: './src/client/index.js',
   output: {
     path: path.resolve(__dirname, '..', 'dist'),
@@ -45,15 +46,22 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', 'src', 'client', 'index.html'), // Adjusted path for template file
+      template: './src/client/index.html'
+    }),
+    new Dotenv({
+      path: `./.env.${env}`
     }),
   ],
   devServer: {
-    port: 8080,
+    port: 3000,
     hot: true,
-    // static: {
-    //   publicPath: '/',
-    //   directory: path.resolve(__dirname, '..', 'dist'), // Adjusted path for 'dist' directory
-    // },
+    static: {
+      publicPath: '/',
+      directory: path.resolve(__dirname, '..', 'dist'),
+    },
+    proxy: [{
+      context: ['/api'],
+      target: 'http://localhost:8080', // forward requests starting with '/api' to port 8080
+    }],
   },
-};
+});
